@@ -1,0 +1,47 @@
+import pandas as pd
+import seaborn as sns
+
+data = pd.read_csv("dataset_Facebook.csv"), sep=;)
+data
+
+data.isna().sum()
+
+data.fillna(data.mean(numeric_only=True), inplace=True)
+
+sub1 = data[data["Type"]=="Photo"]
+sub1
+
+sub2 = data[data["like"] > 50]
+sub2.head(5)
+
+sub5 = data[(data["Paid"] == 1) & (data["Post Weekday"] > 4)]
+sub5
+
+sub6 = data[(data["Paid"] == 1) & (data["Lifetime Post Total Reach"] > 10000) & (data["Category"] == 3)]
+sub6
+
+
+
+merge1 = pd.merge(
+    sub4, sub5,
+    on = "Post Weekday"
+)
+merge1.head(5)
+
+
+
+merge2 = pd.concat([sub5,sub6])
+merge2
+
+
+
+transpose7 = data.head().T
+transpose7
+
+
+pivot = pd.pivot_table(
+    data,
+    values=["like","Paid","share","comment"],
+    index="Type",
+    aggfunc="mean"
+)

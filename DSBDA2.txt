@@ -1,0 +1,53 @@
+data = data.read_csv("WineQT.csv")
+data
+
+data.drop("Id", axis=1, inplace=True)
+
+data.isna().sum()
+
+data.fillna(data.mean(numeric_only = True), inplace = True)
+
+sns.heatmap(data.corr(), annot = True)
+plt.show()
+
+from sklearn.model_selection import train_test_split
+
+x1=df.drop("quality", axis=1)
+y1=df("quality")
+
+x1_train,x1_test,y1_train,y1_test = train_test_split(x1,y1,test_size=0.25,random_state=42)
+
+from sklearn.linear_model import LinearRegression
+
+lr1 = LinearRegression()
+
+lr1.fit(x1_train,y1_train)
+
+y_pred1 = lr1.predict(x1_test)
+
+from sklearn.metrics import root_mean_squared_error, r2_score
+print("RMSE", root_mean_squared_error(y1_test,y_pred1)
+
+sns.regplot(x=y1_test,y=y_pred1)
+plt.show()
+
+
+
+fa = float(input("Fixed acidity: "))
+va = float(input("Volatile acidity: "))
+ca = float(input("Citric acid: "))
+rs = float(input("Residual sugar: "))
+cl = float(input("Chlorides: "))
+fsd = float(input("Free sulfur dioxide: "))
+tsd = float(input("Total sulfur dioxide: "))
+den = float(input("Density: "))
+ph = float(input("pH: "))
+sul = float(input("Sulphates: "))
+alc = float(input("Alcohol: "))
+
+sample = [[fa,va,ca,rs,cl,fsd,tsd,den,ph,sul,alc]]
+prediction = lr1.predict(sample)
+print("Quality of the wine is predicted as = ", prediction[0])
+
+
+

@@ -1,0 +1,87 @@
+# Import Libraries
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load Dataset
+
+data = pd.read_csv("Heart_dataset.csv")
+
+data.drop("Unnamed: 0", axis=1, inplace=True)
+
+data['Sex'] = data['Sex'].map({ 0: 'Female', 1: 'Male'})
+
+# Display Dataset
+
+print(data.head())
+
+# Check Missing Values
+
+print(data.isna().sum())
+
+# Handle Missing Values
+
+data.fillna(data.mean(numeric_only=True), inplace=True)
+
+# Dataset Information
+
+print(data.info())
+
+# Statistical Summary
+
+print(data.describe())
+
+# Heatmap
+
+sns.heatmap( data.select_dtypes(include='number').corr(),annot=True)
+
+plt.show()
+
+# Countplot
+
+sns.countplot(x='AHD', data=data)
+
+plt.show()
+
+# Histogram
+
+plt.hist(data['Age'])
+
+plt.xlabel("Age")
+
+plt.ylabel("Count")
+
+plt.title("Age Distribution")
+
+plt.show()
+
+# Histplot
+
+sns.histplot(data=data, x='Chol', kde=True)
+plt.show()
+
+# Scatterplot
+
+sns.scatterplot( x='Age',y='Chol',hue='AHD', data=data)
+plt.show()
+
+# Boxplot
+
+sns.boxplot(x='AHD',y='Chol',hue='Sex',data=data)
+plt.show()
+
+# Violin Plot
+
+sns.violinplot(x='AHD',y='Chol',hue='Sex',data=data)
+plt.show()
+
+
+# Pair Plot
+
+sns.pairplot(
+    data,
+    hue='AHD'
+)
+
+plt.show()
