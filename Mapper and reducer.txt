@@ -33,3 +33,14 @@ for line in sys.stdin:
         
 if current_word==word:
     print('%s\t%s'%(current_word,current_count))
+
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar \
+-input  \
+-output \
+-mapper \
+-reducer \
+-file \
+-file \
+
+ALWAYS PUT THE FILE ON A HADOOP DIRECTORY FIRST
